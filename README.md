@@ -1,7 +1,6 @@
 # Ride-For-Life-BE
 ---
 
-* [Endpoints](#endpoints)
 
 ## Deployed Server
 
