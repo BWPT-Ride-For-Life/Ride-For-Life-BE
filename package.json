@@ -6,7 +6,7 @@
   "scripts": {
     "prod": "cross-env NODE_ENV=production node index.js",
     "start": "node index.js",
-    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "dev": "cross-env NODE_ENV=development nodemon -r dotenv/config index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --watchAll",
     "up:remote": "heroku run knex migrate:up",
     "seed:remote": "heroku run knex seed:run",
