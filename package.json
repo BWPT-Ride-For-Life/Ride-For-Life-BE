@@ -1,0 +1,36 @@
+{
+  "name": "Ride-For-Life-BE",
+  "version": "1.0.0",
+  "description": "The API for Ride-For-Life, a Lambda School build week project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE.git"
+  },
+  "keywords": [],
+  "author": "Kevin Carr <github.com/kevcarr11>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE/issues"
+  },
+  "homepage": "https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.8",
+    "pg": "^7.18.0"
+  }
+}
