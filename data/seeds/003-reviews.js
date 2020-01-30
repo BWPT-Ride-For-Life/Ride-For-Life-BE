@@ -1,6 +1,5 @@
 const faker = require("faker")
 
-
 exports.seed = async function(knex) {
   await knex("reviews").insert([
     { 
