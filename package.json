@@ -4,13 +4,27 @@
   "description": "The API for Ride-For-Life, a Lambda School build week project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "cross-env NODE_ENV=production node index.js",
+    "start": "node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --watchAll",
+    "up:remote": "heroku run knex migrate:up",
+    "seed:remote": "heroku run knex seed:run",
+    "up:latest": "knex migrate:latest && cross-env NODE_ENV=testing knex migrate:latest",
+    "up:all": "knex migrate:up && cross-env NODE_ENV=testing knex migrate:up",
+    "down:all": "knex migrate:down && cross-env NODE_ENV=testing knex migrate:down",
+    "seed:dev": "knex seed:run",
+    "seed:testing": "cross-env NODE_ENV=testing knex seed:run",
+    "seed:all": "npm seed:dev && yarn seed:testing",
+    "migrate:make": "knex migrate:make"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE.git"
   },
-  "keywords": [],
+  "keywords": [ 
+    "heroku"
+   ],
   "author": "Kevin Carr <github.com/kevcarr11>",
   "license": "ISC",
   "bugs": {
@@ -33,5 +47,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.8",
     "pg": "^7.18.0"
+  },
+  "engines": {
+    "node": "12.10.0"
   }
 }
