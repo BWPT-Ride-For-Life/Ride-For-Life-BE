@@ -10,8 +10,8 @@ module.exports = {
 
 async function createUser(customer) {
   customer.password = await bcrypt.hash(customer.password, 14)
-  const [id] = await db("customers").insert(customer)
-    return findById(id)
+   await db("customers").insert(customer)
+    return findByEmail(customer.email)
 }
 
 function find() {

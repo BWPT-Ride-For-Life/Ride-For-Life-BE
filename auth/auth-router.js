@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs")
 
 const router = require("express").Router()
 
-router.post("/register-user", async (req, res, next) => {
+router.post("/register/user", async (req, res, next) => {
   try {
     const newUser = await usersModel.createUser(req.body)
     const token = signToken(newUser)
@@ -18,7 +18,7 @@ router.post("/register-user", async (req, res, next) => {
   }
 })
 
-router.post("/register-driver", async (req, res, next) => {
+router.post("/register/driver", async (req, res, next) => {
   try {
     const newDriver = await driversModel.createDriver(req.body)
     const token = sighToken(newDriver)
@@ -53,7 +53,7 @@ router.post("/login", async (req, res, next) => {
   }
 })
 
-function sighToken(user) {
+function signUserToken(user) {
   const payload = {
     user_id: user.id,
     email: user.email
@@ -68,11 +68,27 @@ function sighToken(user) {
   return jwt.sign(payload, secret, options)
 }
 
+function signDriverToken(driver) {
+  const payload = {
+    driver_id: driver.id,
+    email: driver.email
+  }
+
+  const secret = process.env.JWT_SECRET
+
+  const options = {
+    expiresIn: "1h"
+  }
+
+  return jwt.sign(payload, secret, options)
+}
+
+
 async function userPasswordCheck() {
-  const user = await usersModel.findByEmail({ email }).first()
+  const user = await usersModel.findByEmail(req.body.email).first()
   const userPasswordValid = await bcrypt.compare(req.body.password, user.password)
   if (userPasswordValid) {
-    const token = signToken(user)
+    const token = signUserToken(user)
     res.status(200).json({
       token,
     })
@@ -83,9 +99,10 @@ async function userPasswordCheck() {
   }
 }
 async function driverPasswordCheck() {
+  const driver = await driversModel.findByEmail(req.body.email).first()
   const driverPasswordValid = await bcrypt.compare(req.body.password, driver.password)
   if (driverPasswordValid) {
-    const token = signToken(driver)
+    const token = signDriverToken(driver)
     res.status(200).json({
       token,
     })

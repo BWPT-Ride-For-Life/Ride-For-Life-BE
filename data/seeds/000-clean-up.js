@@ -1,6 +1,8 @@
 
-exports.seed = async function(knex) {
-  await knex("reviews").del()
-  await knex("customers").del()
-  await knex("drivers").del()
+const cleaner = require("knex-cleaner");
+
+exports.seed = function(knex) {
+  return cleaner.clean(knex, {
+    ignoreTables: ["knex_migrations", "knex_migrations_lock"]
+  });
 };
