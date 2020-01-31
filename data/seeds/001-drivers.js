@@ -45,7 +45,7 @@ exports.seed = async function(knex) {
     },
     {
       name: "Namazzi",
-      email: "nam@email.com",
+      email: "namzz@email.com",
       password: "password", 
       location: "Nansana",
       price: "200 shillings",
@@ -80,7 +80,7 @@ exports.seed = async function(knex) {
     },
     { 
       name: "Kaikara",
-      email: "Kaik@email.com",
+      email: "kaik@email.com",
       password: "password", 
       location: "Kampala",
       price: "200 shillings",
@@ -93,8 +93,8 @@ exports.seed = async function(knex) {
       price: "200 shillings",
     },
     { 
-      name: "Kaikara",
-      email: "kaik@email.com",
+      name: "Shayla",
+      email: "sha@email.com",
       password: "password", 
       location: "Kira",
       price: "100 shillings",
@@ -122,7 +122,7 @@ exports.seed = async function(knex) {
     },
     { 
       name: "Miremba",
-      email: "miremba@email.com",
+      email: "miremba1@email.com",
       password: "password", 
       location: "Kampala",
       price: "100 shillings",

@@ -10,8 +10,8 @@ module.exports = {
 
 async function createDriver(driver) {
   driver.password = await bcrypt.hash(driver.password, 14)
-  const [id] = await db("drivers").insert(driver)
-    return findById(id)
+  await db("drivers").insert(driver)
+   return findByEmail(driver.email)
 }
 
 function find() {
