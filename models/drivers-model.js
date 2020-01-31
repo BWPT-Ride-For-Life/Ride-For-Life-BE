@@ -24,7 +24,7 @@ function findByEmail(email) {
     .first()
 }
 
-function findById(id) {
+function findDriverById(id) {
   return db("drivers")
     .where({ id })
     .first()
