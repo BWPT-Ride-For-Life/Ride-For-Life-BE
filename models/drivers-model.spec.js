@@ -15,7 +15,7 @@ describe("driversModel", () => {
   })
 
   test("createDriver", async () => {
-    await driversModel.createDriver({name: "terry", email: "terry@email", password: "abc", location: "Kira", price: "1 million shillings"})
+    await driversModel.createDriver({name: "terry", email: "zerry@email", password: "abc", location: "Kira", price: "1 million shillings"})
     const drivers = await db("drivers").select()
     expect(drivers.length).toBe(21)
   })

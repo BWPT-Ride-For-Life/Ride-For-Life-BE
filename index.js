@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3300;
 const HOST = process.env.HOST || "0.0.0.0"
 
 server.use((req, res, next) => {
-  console.log(`{}[${new Date().toLocaleString()}] ${req.id} ${req.method} ${req.url}`)
+  console.log(`[${new Date().toLocaleString()}] ${req.id} ${req.method} ${req.url}`)
   next()
 })
 
