@@ -15,12 +15,14 @@ module.exports = {
   production: {
     client: 'pg',
     useNullAsDefault: true,
-    connection:  process.env.DB_URL,
+    connection:  {
+      database: process.env.DATABASE_URL,
+    },
     migrations: {
-      directory: './data/migrations',
+      directory: __dirname + '/data/migrations'
     },
     seeds: {
-      directory: './data/seeds',
+      directory: __dirname + '/data/seeds'
     },
   },
   testing: {
