@@ -48,7 +48,7 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/register-driver', {
     name: 'Kevin',
     email: 'kevcarr@example.com',
     password: 'anunsafepassword',
-    location: Someplace,
+    location: 'Someplace',
     price: 10
   })
 })
