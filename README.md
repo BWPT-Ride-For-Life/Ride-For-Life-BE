@@ -14,11 +14,12 @@ Expects an object with the following keys with the following constraints:
 
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
-| `name` | string | N/A |
-| `location_id` | integer | Must reference the id of a location |
-| `price` | integer | N/A |
-| `email` | string | Must be unique to a single account |
-| `password` | string | N/A |
+| `name` | string | Required |
+| `location_id` | integer | Must reference the id of a location, Required |
+| `phoneNumber` | integer | N/A, Optional |
+| `price` | integer | Required |
+| `email` | string | Must be unique to a single account, Required |
+| `password` | string | Required |
 
 Locations currently stored in database
 --
@@ -59,7 +60,8 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/register-driver', {
     email: 'kevcarr@example.com',
     password: 'anunsafepassword',
     location_id: 1, // must choose 1, 2, or 3
-    price: 100 // note that this currency is in shllings 
+    price: 100, // note that this currency is in shllings 
+    phoneNumber: 555-555-5555 // This is part of stretch. If implempted, this would have to be a working phone number. A fake number or null is okay for now. 
   })
 })
   .then(res => res.json())
@@ -81,9 +83,9 @@ Expects an object with the following keys with the following constraints:
 
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
-| `name` | string | N/A |
-| `email` | string | Must be unique to a single account |
-| `password` | string | N/A |
+| `name` | string | Required |
+| `email` | string | Must be unique to a single account, Required |
+| `password` | string | Required |
 
 Possible Status Codes
 * 201 - Successfully created user
@@ -135,8 +137,8 @@ Expects an object with the following keys with the following constraints:
 
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
-| `email` | string | N/A |
-| `password` | string | N/A |
+| `email` | string | Required |
+| `password` | string | Required |
 
 Possible Status Codes
 * 201 - Successfully logged in
