@@ -15,10 +15,19 @@ Expects an object with the following keys with the following constraints:
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
 | `name` | string | N/A |
-| `location` | string | N/A |
+| `location` | integer | Must reference the id of a location |
 | `price` | integer | N/A |
 | `email` | string | Must be unique to a single account |
 | `password` | string | N/A |
+
+Locations that's stored in database
+--
+| id | Location |
+|----|----------|
+| 1  | Kampala  |
+| 2  | Nansana  |
+| 3  | Kira     |
+
 
 Possible Status Codes
 * 201 - Successfully created driver
@@ -48,8 +57,8 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/register-driver', {
     name: 'Kevin',
     email: 'kevcarr@example.com',
     password: 'anunsafepassword',
-    location: 'Someplace',
-    price: 10
+    location: 1, // must choose 1, 2, or 3
+    price: 100 // note that this currency is in shllings 
   })
 })
   .then(res => res.json())
