@@ -15,12 +15,12 @@ Expects an object with the following keys with the following constraints:
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
 | `name` | string | N/A |
-| `location` | integer | Must reference the id of a location |
+| `location_id` | integer | Must reference the id of a location |
 | `price` | integer | N/A |
 | `email` | string | Must be unique to a single account |
 | `password` | string | N/A |
 
-Locations that's stored in database
+Locations currently stored in database
 --
 | id | Location |
 |----|----------|
@@ -57,7 +57,7 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/register-driver', {
     name: 'Kevin',
     email: 'kevcarr@example.com',
     password: 'anunsafepassword',
-    location: 1, // must choose 1, 2, or 3
+    location_id: 1, // must choose 1, 2, or 3
     price: 100 // note that this currency is in shllings 
   })
 })
