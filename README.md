@@ -40,10 +40,11 @@ On success the endpoint will return an object with a `token`, and `driver` insid
 should be saved to local storage, and sent with all further requests in the
 request header as an `authorization`.
 
-The user will match the following shape
+The driver will match the following shape
 
 | Key | Value type |
 | --- | --- |
+| `id` | integer |
 | `name` | string |
 | `email` | string |
 
@@ -99,6 +100,7 @@ The user will match the following shape
 
 | Key | Value type |
 | --- | --- |
+| `id` | integer |
 | `name` | string |
 | `email` | string |
 
