@@ -16,7 +16,7 @@ Expects an object with the following keys with the following constraints:
 | ---- | --- | --- |
 | `name` | string | Required |
 | `location_id` | integer | Must reference the id of a location, Required |
-| `phoneNumber` | integer | N/A, Optional |
+| `phoneNumber` | string | N/A, Optional |
 | `price` | integer | Required |
 | `email` | string | Must be unique to a single account, Required |
 | `password` | string | Required |
