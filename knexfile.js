@@ -14,12 +14,11 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    useNullAsDefault: true,
     connection: process.env.DATABASE_URL,
-    // pool: {
-    //   min: 0,
-    //   max: 50
-    // },
+    pool: {
+      min: 2,
+      max: 10
+    },
     migrations: {
       directory: __dirname + '/data/migrations'
     },

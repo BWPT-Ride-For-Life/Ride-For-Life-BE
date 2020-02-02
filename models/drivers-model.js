@@ -6,12 +6,20 @@ module.exports = {
   find,
   findByEmail,
   findDriverById,
+  rtnCreated,
 }
 
 async function createDriver(driver) {
   driver.password = await bcrypt.hash(driver.password, 14)
   await db("drivers").insert(driver)
-   return findByEmail(driver.email)
+   return rtnCreated(driver.email)
+}
+
+function rtnCreated(email) {
+  return db("drivers")
+    .where({ email })
+    .select("name", "email")
+    .first()
 }
 
 function find() {

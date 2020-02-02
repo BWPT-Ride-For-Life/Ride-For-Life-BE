@@ -43,4 +43,14 @@ describe('register drivers route', () => {
     expect(res.type).toBe("application/json")
     expect(res.body.token)
   })
+
+  test("login fail with incorrect password", async () => {
+    const res = await supertest(server)
+      .post("/api/auth/login")
+      .send({ email: "butthead@email", password: "ab" })
+    expect(res.status).toBe(401)
+    expect(res.type).toBe("application/json")
+    expect(res.body.token)
+  })
 })
+

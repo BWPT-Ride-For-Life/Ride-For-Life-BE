@@ -10,8 +10,8 @@ router.post("/register-user", async (req, res, next) => {
     const newUser = await usersModel.createUser(req.body)
     const token = signUserToken(newUser)
     res.status(201).json({
-      ...newUser,
       token,
+      ...newUser
     })
   } catch (err) {
     next(err)
@@ -37,7 +37,7 @@ router.post("/login", async (req, res, next) => {
     const driver = await driversModel.findByEmail(req.body.email).first()
 
     if (!user && !driver) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "Invalid Credentials"
       })
     }
@@ -50,7 +50,7 @@ router.post("/login", async (req, res, next) => {
         })
       } else {
         res.status(401).json({
-          message: "Invalid Credentials"
+          message: "Incorrect password, please try again"
         })
       }
     }
@@ -63,7 +63,7 @@ router.post("/login", async (req, res, next) => {
         })
       } else {
         res.status(401).json({
-          message: "Invalid Credentials"
+          message: "Incorrect password, please try again"
         })
       }
     }
@@ -101,34 +101,6 @@ function signDriverToken(driver) {
   }
 
   return jwt.sign(payload, secret, options)
-}
-
-
-async function userPasswordCheck() {
-  if (userPasswordValid) {
-    const token = signUserToken(user)
-    res.status(200).json({
-      token,
-    })
-  } else {
-    res.status(401).json({
-      message: "Invalid Credentials"
-    })
-  }
-}
-async function driverPasswordCheck() {
-  const driver = await driversModel.findByEmail(req.body.email).first()
-  const driverPasswordValid = await bcrypt.compare(req.body.password, driver.password)
-  if (driverPasswordValid) {
-    const token = signDriverToken(driver)
-    res.status(200).json({
-      token,
-    })
-  } else {
-    res.status(401).json({
-      message: "Invalid Credentials"
-    })
-  }
 }
 
 module.exports = router

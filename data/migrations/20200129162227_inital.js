@@ -6,13 +6,23 @@ exports.up = async function(knex) {
     tbl.string("password", 128).notNullable()
   })
 
+  await knex.schema.createTable('locations', tbl => {
+    tbl.increments();
+    tbl.string('name');
+  })  
+
   await knex.schema.createTable("drivers", tbl => {
     tbl.increments()
     tbl.string("name", 128).notNullable()
     tbl.string("email", 128).notNullable().unique()
     tbl.string("password", 128).notNullable()
-    tbl.string("location", 128).notNullable()
-    tbl.string("price", 128).notNullable()
+    tbl.integer("price").notNullable()
+    tbl.integer("location_id")
+      .notNullable()
+      .references("id")
+      .inTable("locations")
+      .onDelete("CASCADE")
+      .onUpdate("CASCADE")
   })
 
   await knex.schema.createTable("reviews", tbl => {
@@ -36,5 +46,6 @@ exports.up = async function(knex) {
 exports.down = async function(knex) {
   await knex.schema.dropTableIfExists("reviews")
   await knex.schema.dropTableIfExists("drivers")
+  await knex.schema.dropTableIfExists("locations")
   await knex.schema.dropTableIfExists("customers")
 };

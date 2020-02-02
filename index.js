@@ -24,9 +24,16 @@ server.use((req, res, next) => {
 
 server.use((err, req, res, next) => {
   console.log(err)
-  res.status(500).json({
-    message: "Something went wrong",
-  })
+
+  if (err.code == 23505) {
+    res.status(400).json({
+      message: `This email already exists`,
+    })  
+  } else {
+    res.status(500).json({
+      message: "Something went wrong",
+    })
+  }
 })
 
 server.listen(PORT, HOST, () => {

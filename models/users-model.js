@@ -6,12 +6,20 @@ module.exports = {
   find,
   findByEmail,
   findById,
+  rtnCreated,
 }
 
 async function createUser(customer) {
   customer.password = await bcrypt.hash(customer.password, 14)
    await db("customers").insert(customer)
-    return findByEmail(customer.email)
+    return rtnCreated(customer.email)
+}
+
+function rtnCreated(email) {
+  return db("customers")
+    .where({ email })
+    .select("name", "email")
+    .first()
 }
 
 function find() {
