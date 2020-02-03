@@ -26,16 +26,20 @@ server.use((err, req, res, next) => {
   console.log(err)
 
   if (err.code == 23505) {
-    res.status(400).json({
+    return res.status(400).json({
       message: `This email already exists`,
-    })  
-  } else {
-    res.status(500).json({
-      message: "Something went wrong",
     })
   }
+  if (err.code == 42703) {
+    return res.status(400).json({
+      message: "Please check data format and try again"
+    })
+  }
+  res.status(500).json({
+    message: "Something went wrong",
+  })
 })
 
-server.listen(PORT, HOST, () => {
-  console.log(`\n=== Server listening on http://${HOST}:${PORT} ===\n`);
-});
+  server.listen(PORT, HOST, () => {
+    console.log(`\n=== Server listening on http://${HOST}:${PORT} ===\n`);
+  });

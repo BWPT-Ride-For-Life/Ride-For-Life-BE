@@ -23,6 +23,9 @@ exports.up = async function(knex) {
       .inTable("locations")
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
+    tbl.string("phoneNumber")
+    tbl.string("avatar")
+    tbl.timestamps()
   })
 
   await knex.schema.createTable("reviews", tbl => {

@@ -11,6 +11,7 @@ describe("register users route", () => {
     expect(res.status).toBe(201)
     expect(res.type).toBe("application/json")
     expect(res.body.name).toMatch(/bevis/i)
+    expect(res.body.id)
     expect(res.body.token)
   })
 
@@ -20,6 +21,7 @@ describe("register users route", () => {
       .send({ email: "mylittle@email.com", password: "password" })
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
+    expect(res.body.id)
     expect(res.body.token)
   })
 })
@@ -28,10 +30,11 @@ describe('register drivers route', () => {
   test("register butthead", async () => {
     const res = await supertest(server)
       .post("/api/auth/register-driver")
-      .send({ name: "Butthead", email: "butthead@email", password: "abc", location: "Kira", price: "2 million shillings"})
+      .send({ name: "Butthead", email: "butthead@email", password: "abc", location_id: 2, price: 100, phoneNumber: "555-965-7815" })
     expect(res.status).toBe(201)
     expect(res.type).toBe("application/json")
     expect(res.body.name).toMatch(/butthead/i)
+    expect(res.body.id)
     expect(res.body.token)
   })
 
@@ -41,6 +44,7 @@ describe('register drivers route', () => {
       .send({ email: "butthead@email", password: "abc" })
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
+    expect(res.body.id)
     expect(res.body.token)
   })
 
@@ -50,7 +54,7 @@ describe('register drivers route', () => {
       .send({ email: "butthead@email", password: "ab" })
     expect(res.status).toBe(401)
     expect(res.type).toBe("application/json")
-    expect(res.body.token)
+    expect(res.body.message).toBe("Incorrect email or password, please try again")
   })
 })
 

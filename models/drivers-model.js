@@ -18,7 +18,7 @@ async function createDriver(driver) {
 function rtnCreated(email) {
   return db("drivers")
     .where({ email })
-    .select("name", "email")
+    .select("id", "name", "email")
     .first()
 }
 

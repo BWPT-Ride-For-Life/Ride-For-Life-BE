@@ -18,7 +18,7 @@ async function createUser(customer) {
 function rtnCreated(email) {
   return db("customers")
     .where({ email })
-    .select("name", "email")
+    .select("id", "name", "email")
     .first()
 }
 

@@ -50,7 +50,7 @@ router.post("/login", async (req, res, next) => {
         })
       } else {
         res.status(401).json({
-          message: "Incorrect password, please try again"
+          message: "Incorrect email or password, please try again"
         })
       }
     }
@@ -63,7 +63,7 @@ router.post("/login", async (req, res, next) => {
         })
       } else {
         res.status(401).json({
-          message: "Incorrect password, please try again"
+          message: "Incorrect email or password, please try again"
         })
       }
     }

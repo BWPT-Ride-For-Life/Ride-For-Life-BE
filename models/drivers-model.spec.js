@@ -11,11 +11,11 @@ describe("driversModel", () => {
     const res = await driversModel.findDriverById(1)
     expect(res.name).toMatch(/joan/i)
     expect(res.email).toBe("joan@gmail.com")
-    expect(res.location).toBe("Kampala")
+    expect(res.location_id).toBe(1)
   })
 
   test("createDriver", async () => {
-    await driversModel.createDriver({name: "terry", email: "zerry@email", password: "abc", location: "Kira", price: "1 million shillings"})
+    await driversModel.createDriver({name: "terry", email: "zerry@email", password: "abc", location_id: 2, price: 200, phoneNumber: "555-555-5555"})
     const drivers = await db("drivers").select()
     expect(drivers.length).toBe(21)
   })
@@ -29,6 +29,6 @@ describe("driversModel", () => {
     const res = await driversModel.findByEmail('bwanbale@email.com')
     expect(res.email).toBe('bwanbale@email.com')
     expect(res.name).toMatch(/bwanbale/i)
-    expect(res.location).toBe("Kampala")
+    expect(res.location_id).toBe(2)
   })
 })

@@ -14,9 +14,10 @@
     "up:all": "knex migrate:up && cross-env NODE_ENV=testing knex migrate:up",
     "down:all": "knex migrate:down && cross-env NODE_ENV=testing knex migrate:down",
     "seed:dev": "knex seed:run",
-    "seed:testing": "cross-env NODE_ENV=testing knex seed:run",
+    "seed:testing": "knex seed:run NODE_ENV=testing",
     "seed:all": "npm seed:dev && npm seed:testing",
-    "migrate:make": "knex migrate:make"
+    "migrate:make": "knex migrate:make",
+    "migrate:rollbackAll": "knex migrate:rollback && NODE_ENV=testing knex migrate:rollback "
   },
   "repository": {
     "type": "git",
