@@ -35,7 +35,7 @@ server.use((err, req, res, next) => {
   //     message: "Please check data format and try again"
   //   })
   // }
-  res.status(500).json({
+  res.status(err.status || 500).json({
     message: "Something went wrong",
   })
 })

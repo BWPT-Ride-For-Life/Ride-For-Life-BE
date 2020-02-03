@@ -73,6 +73,7 @@ async function findDriverByIdWithReviews(id) {
   .leftJoin("locations as l", "l.locationId", "d.id")
   .select("d.id", "d.name", "d.email", "d.price", "d.location_id as location", "d.phoneNumber", "d.avatar", "d.created_at", "d.updated_at")
     .where({ id })
+    
 
   const reviews = await db("reviews as r")
   .join("customers as c", "c.id", "r.customer_id")
@@ -106,7 +107,8 @@ async function findDriverByIdWithReviews(id) {
       reviews: rtnReviews
     }
   })
-  return rtnList
+  return rtnList[0]
+
 }
 
 

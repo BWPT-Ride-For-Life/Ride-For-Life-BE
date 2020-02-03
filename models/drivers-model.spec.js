@@ -11,7 +11,8 @@ describe("driversModel", () => {
     const res = await driversModel.findDriverById(1)
     expect(res.name).toMatch(/joan/i)
     expect(res.email).toBe("joan@gmail.com")
-    expect(res.location_id).toBe(1)
+    expect(res.location_id).toBe(undefined)
+    expect(res.location).toBe("Kampala")
   })
 
   test("createDriver", async () => {

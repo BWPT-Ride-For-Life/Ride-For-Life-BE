@@ -4,19 +4,31 @@ const server = require("../server.js")
 describe("CRUD driver", () => {
 
   test("get list of drivers", async () => {
+    const loginResponse = await supertest(server)
+      .post("/api/auth/register-user")
+      .send({ name: "bob", email: "bab0@email.co", password: "password" })
+
     const res = await supertest(server)
       .get("/api/drivers")
+      .set("Authorization", loginResponse.body.token)
+      .send()
+      
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
-    expect(res.length).toBe(20)
+    expect(res.body.length).toBe(20)
   })
 
   test("get driver by id", async () => {
+    const loginResponse = await supertest(server)
+      .post("/api/auth/register-user")
+      .send({ name: "bob", email: "bab0@.co", password: "password" })
+
     const res = await supertest(server)
       .get("/api/drivers/1")
+      .set("Authorization", loginResponse.body.token)
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
-    expect(res.body.name).toMatch(/joan/i)
+    expect(res.body.name).toBe("Joan")
   })
 
   test("edit driver info", async () => {
