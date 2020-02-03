@@ -7,6 +7,8 @@ module.exports = {
   findByEmail,
   findDriverById,
   rtnCreated,
+  remove,
+  update,
 }
 
 async function createDriver(driver) {
@@ -36,4 +38,19 @@ function findDriverById(id) {
   return db("drivers")
     .where({ id })
     .first()
+}
+
+function remove(id) {
+  return db("drivers")
+    .where({ id })
+    .del()
+}
+
+async function update(id, changes) {
+  await db("drivers")
+    .where({ id })
+    .update(changes)
+
+  return findDriverById(id)
+    .select("name", "email", "location_id", "price", "phoneNumber")
 }
