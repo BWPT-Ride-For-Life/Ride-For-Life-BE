@@ -179,3 +179,112 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
   });
 
 ```
+### GET `/api/drivers`
+
+Possible Status Codes
+* 200 - Successfully and returns a list of drivers 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On success an array of drivers will be returned 
+Example - 
+
+```json
+[
+  {
+    "name": "Mutumba",
+    "email": "mutumba@email.com",
+    "price": 100,
+    "location": "Kampala",
+    "phoneNumber": "713-456-7784",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/spbroma/128.jpg",
+    "created_at": "2019-06-23T09:17:09.028Z",
+    "updated_at": "2020-02-03T07:38:26.328Z"
+  },
+  {
+    "name": "Natukunda",
+    "email": "natu@email.com",
+    "price": 100,
+    "location": "Kampala",
+    "phoneNumber": "070-337-2845",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/spbroma/128.jpg",
+    "created_at": "2019-08-23T10:58:53.749Z",
+    "updated_at": "2020-02-03T05:39:34.811Z"
+  },
+  {
+    "name": "Abbo",
+    "email": "abbo1@email.com",
+    "price": 100,
+    "location": "Kampala",
+    "phoneNumber": "376-920-8530",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kikillo/128.jpg",
+    "created_at": "2019-06-23T09:17:09.028Z",
+    "updated_at": "2020-02-03T07:38:26.328Z"
+  },
+  {
+    "name": "Mukisa",
+    "email": "Mus@5email.com",
+    "price": 200,
+    "location": "Kampala",
+    "phoneNumber": "259-841-2607",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/francis_vega/128.jpg",
+    "created_at": "2019-09-25T09:41:17.745Z",
+    "updated_at": "2020-02-02T23:52:41.940Z"
+  },
+  {
+    "name": "Akiki",
+    "email": "akiki@email.com",
+    "price": 200,
+    "location": "Kampala",
+    "phoneNumber": "531-450-6666",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/plbabin/128.jpg",
+    "created_at": "2019-08-13T03:39:08.634Z",
+    "updated_at": "2020-02-02T22:38:31.214Z"
+  },
+  ...
+
+```
+
+### GET `/api/drivers/:id`
+
+Possible Status Codes
+* 200 - Successfully and returns a object with driver info and reviews for each driver 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+Example of a successful response 
+```json
+{
+  "id": 2,
+  "name": "Florence",
+  "email": "fl@email.com",
+  "price": 200,
+  "location": "Nansana",
+  "phoneNumber": "587-485-0147",
+  "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jervo/128.jpg",
+  "created_at": "2019-03-23T06:18:01.929Z",
+  "updated_at": "2020-02-03T12:41:16.324Z",
+  "reviews": [
+    {
+      "driver_id": 2,
+      "review": "Driver just drove and did not try to make small talk.",
+      "user": "Kevin"
+    },
+    {
+      "driver_id": 2,
+      "review": "This driver got us to the hospital and I delivered a healthy baby boy. Thank you so much, would highly recommend",
+      "user": "Bevis"
+    },
+    {
+      "driver_id": 2,
+      "review": "Waited for over half a hour. Then driver showed up with and made up for being late",
+      "user": "Butthead"
+    }
+  ]
+}
+```
+
