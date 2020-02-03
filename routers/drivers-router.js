@@ -15,7 +15,7 @@ router.get("/", restricted, async (req, res, next) => {
 
 router.get("/:id", restricted, async (req, res, next) => {
   try {
-    const driver = await driversModel.findDriverById(req.params.id)
+    const driver = await driversModel.findDriverByIdWithReviews(req.params.id)
     if (driver) {
       res.json(driver)
     } else {
@@ -28,7 +28,8 @@ router.get("/:id", restricted, async (req, res, next) => {
 
 router.put("/:id", restricted, async (req, res, next) => {
   try {
-    if (!req.body) {
+    const { name, email, location_id, price, phoneNumber } = req.body
+    if (!name || !email || !location_id || !price) {
       return res.status(400).json({ message: "Missing updated information" })
     }
 

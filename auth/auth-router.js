@@ -46,6 +46,7 @@ router.post("/login", async (req, res, next) => {
       if (driverPasswordValid) {
         const token = signDriverToken(driver)
         res.status(200).json({
+          driverId: driver.id,
           token,
         })
       } else {
@@ -59,6 +60,7 @@ router.post("/login", async (req, res, next) => {
       if (userPasswordValid) {
         const token = signUserToken(user)
         res.status(200).json({
+          userId: user.id,
           token,
         })
       } else {
@@ -82,7 +84,7 @@ function signUserToken(user) {
   const secret = process.env.JWT_SECRET
 
   const options = {
-    expiresIn: "1h"
+    expiresIn: "72h"
   }
 
   return jwt.sign(payload, secret, options)
@@ -97,7 +99,7 @@ function signDriverToken(driver) {
   const secret = process.env.JWT_SECRET
 
   const options = {
-    expiresIn: "1h"
+    expiresIn: "72h"
   }
 
   return jwt.sign(payload, secret, options)

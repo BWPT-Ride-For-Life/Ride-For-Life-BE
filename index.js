@@ -30,11 +30,11 @@ server.use((err, req, res, next) => {
       message: `This email already exists`,
     })
   }
-  if (err.code == 42703) {
-    return res.status(400).json({
-      message: "Please check data format and try again"
-    })
-  }
+  // if (err.code == 42703) {
+  //   return res.status(400).json({
+  //     message: "Please check data format and try again"
+  //   })
+  // }
   res.status(500).json({
     message: "Something went wrong",
   })

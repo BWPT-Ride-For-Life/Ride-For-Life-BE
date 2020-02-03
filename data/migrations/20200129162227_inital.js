@@ -7,7 +7,7 @@ exports.up = async function(knex) {
   })
 
   await knex.schema.createTable('locations', tbl => {
-    tbl.increments();
+    tbl.increments("locationId");
     tbl.string('name');
   })  
 
@@ -19,7 +19,7 @@ exports.up = async function(knex) {
     tbl.integer("price").notNullable()
     tbl.integer("location_id")
       .notNullable()
-      .references("id")
+      .references("locationId")
       .inTable("locations")
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
@@ -29,7 +29,7 @@ exports.up = async function(knex) {
   })
 
   await knex.schema.createTable("reviews", tbl => {
-    tbl.increments()
+    tbl.increments("reviewId")
     tbl.string("review", 128)
     tbl.integer("customer_id")
       .notNullable()
