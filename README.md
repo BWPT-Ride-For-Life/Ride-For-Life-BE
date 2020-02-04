@@ -14,7 +14,8 @@ Expects an object with the following keys with the following constraints:
 
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
-| `name` | string | Required |
+| `firstName` | string | Required |
+| `lastName` | string | Required |
 | `location_id` | integer | Must reference the id of a location, Required |
 | `phoneNumber` | string | N/A, Optional |
 | `price` | integer | Required |
@@ -56,7 +57,8 @@ Example
 fetch('https://ride-for-life-bw.herokuapp.com/api/auth/register-driver', {
   method: 'POST',
   body: JSON.stringify({
-    name: 'Kevin',
+    firstName: 'Kevin',
+    lastName: 'Carr',
     email: 'kevcarr@example.com',
     password: 'anunsafepassword',
     location_id: 1, // must choose 1, 2, or 3
