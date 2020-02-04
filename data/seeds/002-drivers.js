@@ -17,7 +17,7 @@ exports.seed = async function (knex) {
     {
       firstName: "Florence",
       lastName: faker.name.lastName(),
-      email: "fl@email.com",
+      email: "fl@email2451.com",
       password: "password",
       location_id: 2,
       phoneNumber: faker.phone.phoneNumberFormat(),
