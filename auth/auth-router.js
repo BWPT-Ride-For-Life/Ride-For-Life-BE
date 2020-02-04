@@ -1,24 +1,27 @@
 const usersModel = require("../models/users-model")
 const driversModel = require("../models/drivers-model")
+const driverEmailCheck = require("./auth-driverEmail-middleware")
+const userEmailCheck = require("./auth-userEmail-middleware")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 
 const router = require("express").Router()
 
-router.post("/register-user", async (req, res, next) => {
+router.post("/register-user", driverEmailCheck, async (req, res, next) => {
+
   try {
     const newUser = await usersModel.createUser(req.body)
     const token = signUserToken(newUser)
     res.status(201).json({
+      ...newUser,
       token,
-      ...newUser
     })
   } catch (err) {
     next(err)
   }
 })
 
-router.post("/register-driver", async (req, res, next) => {
+router.post("/register-driver", userEmailCheck, async (req, res, next) => {
   try {
     const newDriver = await driversModel.createDriver(req.body)
     const token = signDriverToken(newDriver)
@@ -33,8 +36,8 @@ router.post("/register-driver", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   try {
-    const user = await usersModel.findByEmail(req.body.email).first()
-    const driver = await driversModel.findByEmail(req.body.email).first()
+    const user = await usersModel.findByEmail(req.body.email)
+    const driver = await driversModel.findByEmail(req.body.email)
 
     if (!user && !driver) {
       return res.status(400).json({
