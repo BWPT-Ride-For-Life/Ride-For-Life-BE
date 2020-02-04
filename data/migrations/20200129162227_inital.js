@@ -13,7 +13,8 @@ exports.up = async function(knex) {
 
   await knex.schema.createTable("drivers", tbl => {
     tbl.increments()
-    tbl.string("name", 128).notNullable()
+    tbl.string("firstName", 128).notNullable()
+    tbl.string("lastName", 128).notNullable()
     tbl.string("email", 128).notNullable().unique()
     tbl.string("password", 128).notNullable()
     tbl.integer("price").notNullable()
