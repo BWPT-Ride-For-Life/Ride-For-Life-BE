@@ -11,20 +11,11 @@ module.exports = {
   update,
   findDriverByIdWithReviews,
 }
-// db("reviews").insert(review)
-//.then(ids => {
-  //return findReviewById(ids[0])
-//})
-//
-//
+
 async function createDriver(driver) {
   driver.password = await bcrypt.hash(driver.password, 14)
-  // await db("drivers").insert(driver)
-  // return rtnCreated(driver.email)
-  db("drivers").insert(driver)
-    .then(ids => {
-      return findDriverById(ids[0])
-    })
+  await db("drivers").insert(driver)
+  return rtnCreated(driver.email)
 }
 
 function rtnCreated(email) {
