@@ -262,7 +262,7 @@ Example of a successful response
 ```json
 {
   "id": 2,
-  "name": "Florence",
+  "firstName": "Florence",
   "email": "fl@email.com",
   "price": 200,
   "location": "Nansana",
