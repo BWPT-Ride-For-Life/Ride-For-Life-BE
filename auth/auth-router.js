@@ -28,7 +28,7 @@ router.post("/register-driver", userEmailCheck, async (req, res, next) => {
       ...req.body,
       avatar: faker.internet.avatar(),
       created_at: new Date().toLocaleString(),
-      updated_at: "Not yet updated" 
+      updated_at: faker.date.future() 
     }
     const newDriver = await driversModel.createDriver(driver)
     const token = signDriverToken(newDriver)
