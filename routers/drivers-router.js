@@ -1,8 +1,11 @@
 const express = require("express")
 const driversModel = require("../models/drivers-model")
 const restricted = require("../auth/authenticate-middleware")
+const reviewsRouter = require("./reviews-router")
 
 const router = express.Router()
+
+router.use("/:id/reviews", reviewsRouter)
 
 router.get("/", restricted, async (req, res, next) => {
   try {
@@ -28,10 +31,10 @@ router.get("/:id", restricted, async (req, res, next) => {
 
 router.put("/:id", restricted, async (req, res, next) => {
   try {
-    const { name, email, location_id, price, phoneNumber } = req.body
-    if (!name || !email || !location_id || !price) {
-      return res.status(400).json({ message: "Missing updated information" })
-    }
+    // const { firstName, lastName, email, location_id, price, phoneNumber } = req.body
+    // if (!email || !location_id || !price || !firstName || !lastName) {
+    //   return res.status(400).json({ message: "Missing updated information" })
+    // }
 
     const updatedDriver = await driversModel.update(req.params.id, req.body)
     if (updatedDriver) {

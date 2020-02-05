@@ -1,5 +1,10 @@
 const supertest = require("supertest")
 const server = require("../server.js")
+const db = require("../data/dbConfig")
+
+beforeEach(async () => {
+  await db.seed.run()
+})
 
 describe("CRUD driver", () => {
 
@@ -28,7 +33,7 @@ describe("CRUD driver", () => {
       .set("Authorization", loginResponse.body.token)
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
-    expect(res.body.name).toBe("Joan")
+    expect(res.body.firstName).toBe("Florence")
   })
 
   test("edit driver info", async () => {

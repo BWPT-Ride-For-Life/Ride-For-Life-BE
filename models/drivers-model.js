@@ -11,11 +11,20 @@ module.exports = {
   update,
   findDriverByIdWithReviews,
 }
-
+// db("reviews").insert(review)
+//.then(ids => {
+  //return findReviewById(ids[0])
+//})
+//
+//
 async function createDriver(driver) {
   driver.password = await bcrypt.hash(driver.password, 14)
-  await db("drivers").insert(driver)
-  return rtnCreated(driver.email)
+  // await db("drivers").insert(driver)
+  // return rtnCreated(driver.email)
+  db("drivers").insert(driver)
+    .then(ids => {
+      return findDriverById(ids[0])
+    })
 }
 
 function rtnCreated(email) {
@@ -29,7 +38,8 @@ function find() {
   return db("drivers as d")
     .join("locations as l", "d.location_id", "l.locationId")
     .select(
-      "d.name",
+      "d.firstName",
+      "d.lastName",
       "d.email",
       "d.price",
       "l.name as location",
@@ -51,7 +61,7 @@ function findDriverById(id) {
     .join("locations as l", "d.location_id", "l.locationId")
     .where({ id })
     .first()
-    .select("d.name", "d.email", "l.name as location", "d.price", "d.phoneNumber", "d.created_at", "d.updated_at", "d.avatar")
+    .select("d.firstName", "d.lastName", "d.email", "l.name as location", "d.price", "d.phoneNumber", "d.created_at", "d.updated_at", "d.avatar")
 }
 
 function remove(id) {
@@ -71,7 +81,7 @@ async function update(id, changes) {
 async function findDriverByIdWithReviews(id) {
   let drivers = await db("drivers as d")
   .leftJoin("locations as l", "l.locationId", "d.id")
-  .select("d.id", "d.name", "d.email", "d.price", "d.location_id as location", "d.phoneNumber", "d.avatar", "d.created_at", "d.updated_at")
+  .select("d.id", "d.firstName", "d.lastName", "d.email", "d.price", "d.location_id as location", "d.phoneNumber", "d.avatar", "d.created_at", "d.updated_at")
     .where({ id })
     
 

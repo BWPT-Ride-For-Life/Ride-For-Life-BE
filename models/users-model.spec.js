@@ -15,7 +15,7 @@ describe("usersModel", () => {
   test("createUser", async () => {
     await usersModel.createUser({name: "jerry", email: "jerry@email", password: "abc"})
     const users = await db("customers").select("*")
-    expect(users.length).toBe(6)
+    expect(users.length).toBe(5)
   })
 
   test("find", async () =>{

@@ -30,7 +30,7 @@ exports.up = async function(knex) {
   })
 
   await knex.schema.createTable("reviews", tbl => {
-    tbl.increments("reviewId")
+    tbl.increments()
     tbl.string("review", 128)
     tbl.integer("customer_id")
       .notNullable()
