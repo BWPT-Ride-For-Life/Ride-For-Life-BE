@@ -32,8 +32,8 @@ router.get("/:id", restricted, async (req, res, next) => {
 
 router.put("/:id", restricted, driverCheck, async (req, res, next) => {
   try {
-    const { firstName, lastName, email, location_id, price } = req.body
-    if (!email || !location_id || !price || !firstName || !lastName) {
+    const { firstName, lastName, email, location_id, price, phoneNumber } = req.body
+    if (!email || !location_id || !price || !firstName || !lastName || !phoneNumber) {
       return res.status(400).json({ message: "Missing updated information" })
     }
     const newInfo = { 

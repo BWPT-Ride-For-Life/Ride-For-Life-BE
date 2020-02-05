@@ -32,7 +32,7 @@ server.get("/request-driver/:id", async (req, res, next) => {
   const driver = await driversModel.findDriverById(req.params.id)
 
   client.messages.create({
-    to: `+1${driver.phoneNumber}`,
+    to: driver.phoneNumber,
     from: process.env.TWILIO_NUMBER,
     body: "A user is requesting a ride! Reply with 'yes' to to accept request!",
   })
