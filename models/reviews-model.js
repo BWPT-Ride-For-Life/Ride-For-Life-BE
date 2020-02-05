@@ -9,10 +9,7 @@ module.exports = {
 }
 
 function insertReview(review) {
-  db("reviews").insert(review)
-    .then(ids => {
-      return findReviewById(ids[0])
-    })
+  return db("reviews").insert(review)
 }
 
 function findReviewById(id) {

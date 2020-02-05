@@ -78,7 +78,7 @@ async function findDriverByIdWithReviews(id) {
 
   const reviews = await db("reviews as r")
   .join("customers as c", "c.id", "r.customer_id")
-  .select("driver_id", "review", "name as user")
+  .select("r.id", "driver_id", "review", "name as user")
   
   const rtnList = drivers.map(indDriver => {
     const rtnReviews = reviews.filter(({ driver_id }) => driver_id === indDriver.id)

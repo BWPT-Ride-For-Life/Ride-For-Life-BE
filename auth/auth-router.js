@@ -2,6 +2,7 @@ const usersModel = require("../models/users-model")
 const driversModel = require("../models/drivers-model")
 const driverEmailCheck = require("./auth-driverEmail-middleware")
 const userEmailCheck = require("./auth-userEmail-middleware")
+const faker = require("faker")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 
@@ -23,7 +24,13 @@ router.post("/register-user", driverEmailCheck, async (req, res, next) => {
 
 router.post("/register-driver", userEmailCheck, async (req, res, next) => {
   try {
-    const newDriver = await driversModel.createDriver(req.body)
+    const driver = { 
+      ...req.body,
+      avatar: faker.internet.avatar(),
+      created_at: new Date().toLocaleString(),
+      updated_at: "Not yet updated" 
+    }
+    const newDriver = await driversModel.createDriver(driver)
     const token = signDriverToken(newDriver)
     res.status(201).json({
       ...newDriver,
@@ -81,7 +88,7 @@ router.post("/login", async (req, res, next) => {
 function signUserToken(user) {
   const payload = {
     user_id: user.id,
-    email: user.email
+    userType: "user"
   }
 
   const secret = process.env.JWT_SECRET
@@ -96,7 +103,7 @@ function signUserToken(user) {
 function signDriverToken(driver) {
   const payload = {
     driver_id: driver.id,
-    email: driver.email
+    userType: "driver"
   }
 
   const secret = process.env.JWT_SECRET

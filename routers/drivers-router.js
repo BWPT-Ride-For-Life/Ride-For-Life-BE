@@ -2,6 +2,7 @@ const express = require("express")
 const driversModel = require("../models/drivers-model")
 const restricted = require("../auth/authenticate-middleware")
 const reviewsRouter = require("./reviews-router")
+const driverCheck = require("../middleware/driverCheck")
 
 const router = express.Router()
 
@@ -29,14 +30,17 @@ router.get("/:id", restricted, async (req, res, next) => {
   }
 })
 
-router.put("/:id", restricted, async (req, res, next) => {
+router.put("/:id", restricted, driverCheck, async (req, res, next) => {
   try {
-    // const { firstName, lastName, email, location_id, price, phoneNumber } = req.body
-    // if (!email || !location_id || !price || !firstName || !lastName) {
-    //   return res.status(400).json({ message: "Missing updated information" })
-    // }
-
-    const updatedDriver = await driversModel.update(req.params.id, req.body)
+    const { firstName, lastName, email, location_id, price } = req.body
+    if (!email || !location_id || !price || !firstName || !lastName) {
+      return res.status(400).json({ message: "Missing updated information" })
+    }
+    const newInfo = { 
+      ...req.body,
+      updated_at: new Date().toLocaleString()
+     }
+    const updatedDriver = await driversModel.update(req.params.id, newInfo)
     if (updatedDriver) {
       res.json(updatedDriver)
     } else {
@@ -47,7 +51,7 @@ router.put("/:id", restricted, async (req, res, next) => {
   }
 })
 
-router.delete("/:id", restricted, async (req, res, next) => {
+router.delete("/:id", restricted, driverCheck, async (req, res, next) => {
   try {
     const count = await driversModel.remove(req.params.id)
     if (count > 0) {
