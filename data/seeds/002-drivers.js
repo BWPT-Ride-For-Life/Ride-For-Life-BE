@@ -3,12 +3,12 @@ const faker = require("faker")
 exports.seed = async function (knex) {
   await knex("drivers").insert([
     {
-      firstName: "Florence",
+      firstName: "May",
       lastName: faker.name.lastName(),
       email: "fl@email.com",
       password: "password",
       location_id: 2,
-      phoneNumber: faker.phone.phoneNumberFormat(),
+      phoneNumber: 8309988280,
       avatar: faker.image.avatar(),
       price: 200,
       created_at: faker.date.past(),
