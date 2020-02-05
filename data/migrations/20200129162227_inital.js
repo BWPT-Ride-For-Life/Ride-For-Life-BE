@@ -24,7 +24,7 @@ exports.up = async function(knex) {
       .inTable("locations")
       .onDelete("CASCADE")
       .onUpdate("CASCADE")
-    tbl.string("phoneNumber")
+    tbl.string("phoneNumber").notNullable()
     tbl.string("avatar")
     tbl.timestamps()
   })

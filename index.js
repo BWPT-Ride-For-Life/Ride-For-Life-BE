@@ -16,8 +16,7 @@ const allowCrossDomain = function (req, res, next) {
     next();
   }
 };
-
-// server.use(allowCrossDomain)
+server.use(allowCrossDomain)
 
 server.use((req, res, next) => {
   console.log(`[${new Date().toLocaleString()}] ${req.id} ${req.method} ${req.url}`)

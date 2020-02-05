@@ -103,7 +103,8 @@ function signUserToken(user) {
 function signDriverToken(driver) {
   const payload = {
     driver_id: driver.id,
-    userType: "driver"
+    userType: "driver",
+    phone: driver.phoneNumber
   }
 
   const secret = process.env.JWT_SECRET
