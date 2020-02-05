@@ -2,7 +2,7 @@ const supertest = require("supertest")
 const server = require("../server.js")
 const db = require("../data/dbConfig")
 
-beforeEach(async () => {
+beforeAll(async () => {
   await db.seed.run()
 })
 

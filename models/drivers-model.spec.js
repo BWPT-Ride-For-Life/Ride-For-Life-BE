@@ -1,7 +1,7 @@
 const driversModel = require("./drivers-model")
 const db = require("../data/dbConfig")
 
-beforeEach(async () => {
+beforeAll(async () => {
   await db.seed.run()
 })
 
@@ -23,7 +23,7 @@ describe("driversModel", () => {
 
   test("find", async () => {
     const res = await driversModel.find()
-    expect(res.length).toBe(20)
+    expect(res.length).toBe(21)
   })
 
   test("findByEmail", async () => {

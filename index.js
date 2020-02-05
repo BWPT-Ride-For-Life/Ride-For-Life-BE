@@ -3,6 +3,8 @@ const server = require('./server.js');
 const PORT = process.env.PORT || 3300;
 const HOST = process.env.HOST || "0.0.0.0"
 
+
+
 const allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);

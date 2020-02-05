@@ -1,7 +1,7 @@
 const db = require("../data/dbConfig")
 const usersModel = require("../models/users-model")
 
-beforeEach(async () => {
+beforeAll(async () => {
   await db.seed.run()
 })
 
@@ -20,7 +20,7 @@ describe("usersModel", () => {
 
   test("find", async () =>{
     const res = await usersModel.find()
-    expect(res.length).toBe(4)
+    expect(res.length).toBe(5)
   })
 
   test("findByEmail", async () =>{

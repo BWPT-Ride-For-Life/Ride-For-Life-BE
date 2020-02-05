@@ -1,7 +1,7 @@
 const reviewsModel = require("./reviews-model")
 const db = require("../data/dbConfig")
 
-beforeEach(async () => {
+beforeAll(async () => {
   await db.seed.run()
 })
 
@@ -35,6 +35,6 @@ describe("reviewsModel", () => {
   test("delete review", async () => {
     await reviewsModel.deleteReview(1)
     const res = await db("reviews").select("*")
-    expect(res.length).toBe(32)
+    expect(res.length).toBe(33)
   })
 })
