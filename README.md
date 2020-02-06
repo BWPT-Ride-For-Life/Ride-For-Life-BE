@@ -6,7 +6,7 @@
 
 The server is deployed to heroku at the url [https:\/\/ride-for-life-bw.herokuapp.com/](https://ride-for-life-bw.herokuapp.com/).
 
-## Endpoints
+## Driver CRUD Endpoints
 
 ### POST `/api/auth/register-driver`
 
@@ -290,7 +290,7 @@ Example of a successful response
 }
 ```
 ### DELETE `/api/drivers/:id` 
-Must be logged in as a driver to access this endpoint. If not will recieve 401 back from server
+Note that you must be logged in as a driver to access this endpoint. If not will recieve 401 back from server!
 
 Possible Status Codes
 * 200 - Successful 
@@ -317,7 +317,7 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/drivers/1', {
   });
 ```
 ### PUT `/api/drivers/:id`
-Must be logged in as a driver to access this endpoint. If not will recieve 401 back from server
+Note that you must be logged in as a driver to access this endpoint. If not will recieve 401 back from server!
 
 Possible Status Codes
 * 200 - Successful 
@@ -340,7 +340,11 @@ On success returns driver object with the updated changes like below
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ffbel/128.jpg"
 ```
 
+### Reviews CRUD Endpoints
+
+
 ### POST `/api/drivers/:id/reviews`
+Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
 
 Expects an object with the following keys with the following constraints:
 
@@ -378,4 +382,51 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
 
 ```
 
+### PUT `/api/drivers/:id/reviews/review_id` 
+Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
+ Here the :id is the drivers id and the review_id is the id of the review you want to update
+ 
+Expects an object with the following keys with the following constraints:
+
+| Field | Type | Other Constraints |
+| ---- | --- | --- |
+| `review` | string | N/A |
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On successful response the server sends back a json object of the following shape
+
+```json
+
+ "id": 31,
+  "review": "Here is a edited review",
+  "customer_id": 5,
+  "driver_id": 19
+
+```
+### DELETE `/api/drivers/:id/reviews/review_id` 
+Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
+ Here the :id is the drivers id and the review_id is the id of the review you want to delete
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On successful response the server sends back a json object of the following shape
+
+```json
+
+ {
+  "message": "Review was successfully deleted"
+  }
+
+```
 
