@@ -1,7 +1,6 @@
 # Ride-For-Life-BE
 ---
 
-
 ## Deployed Server
 
 The server is deployed to heroku at the url [https:\/\/ride-for-life-bw.herokuapp.com/](https://ride-for-life-bw.herokuapp.com/).
@@ -363,8 +362,7 @@ On success returns driver object with the updated changes like below
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ffbel/128.jpg"
 ```
 
-### Reviews CRUD Endpoints
-
+## Reviews CRUD Endpoints
 
 ### POST `/api/drivers/:id/reviews`
 Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
@@ -454,8 +452,8 @@ On successful response the server sends back a json object of the following shap
 ```
 ## Setting up the project locally
 
-1. `git+https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE.git`
-2. `cd back-end`
+1. `git clone https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE.git`
+2. `cd Ride-For-Life-BE`
 3. `npm install`
 4. `cp .env.example .env`
 5. Set up a test and development postgres database ( `createdb <database>` )
