@@ -17,7 +17,7 @@ Expects an object with the following keys with the following constraints:
 | `firstName` | string | Required |
 | `lastName` | string | Required |
 | `location_id` | integer | Must reference the id of a location, Required |
-| `phoneNumber` | string | N/A, Optional |
+| `phoneNumber` | string | Required, must conform to this format 4098856312 - no dashes  |
 | `price` | integer | Required |
 | `email` | string | Must be unique to a single account, Required |
 | `password` | string | Required |
@@ -289,4 +289,93 @@ Example of a successful response
   ]
 }
 ```
+### DELETE `/api/drivers/:id` 
+Must be logged in as a driver to access this endpoint. If not will recieve 401 back from server
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On success an json object with the message "The driver has been successfully deleted"
+
+```js
+fetch('https://ride-for-life-bw.herokuapp.com/api/drivers/1', {
+  method: "DELETE",
+  headers: {
+    Authorization: token, // (this token could come from localStorage)
+  }
+})
+  .then(res => res.json())
+  .then(wasSuccessful => {
+      // if this was successful you will recieve a json message saying driver was deleted successfully
+  })
+  .catch(err => {
+    // This is where you would handle any errors
+  });
+```
+### PUT `/api/drivers/:id`
+Must be logged in as a driver to access this endpoint. If not will recieve 401 back from server
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On success returns driver object with the updated changes like below
+
+```json
+  "firstName": "Jimbo",
+  "lastName": "jones",
+  "email": "mutum2ba@aol23.com",
+  "location": "Kampala",
+  "price": 100,
+  "phoneNumber": "7134567784",
+  "created_at": "2019-05-19T19:30:15.650Z",
+  "updated_at": "2020-02-06T01:07:42.000Z",
+  "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ffbel/128.jpg"
+```
+
+### POST `/api/drivers/:id/reviews`
+
+Expects an object with the following keys with the following constraints:
+
+| Field | Type | Other Constraints |
+| ---- | --- | --- |
+| `review` | string | N/A |
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On success the database returns the number of rows updated which will always be the number 1 or 0. 1 meaning 1 review was successfully added and 0 meinging the review was not added. (should always return 1, if not let me know becasue somthing is wrong)
+
+```js
+// This example shows a what a successful post would look like
+
+fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
+  method: 'POST',
+  body: JSON.stringify({
+    review: 'Really awsome driver!'
+    
+  })
+})
+  .then(res => res.json())
+  .then(data => {
+    // This is where you check the response for a 0 or 1
+    // ...
+  })
+  .catch(err => {
+    // This is where you would handle any errors
+  });
+
+```
+
 
