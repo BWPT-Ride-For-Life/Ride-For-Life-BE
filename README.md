@@ -452,4 +452,16 @@ On successful response the server sends back a json object of the following shap
   }
 
 ```
+## Setting up the project locally
+
+1. `git+https://github.com/BWPT-Ride-For-Life/Ride-For-Life-BE.git`
+2. `cd back-end`
+3. `npm install`
+4. `cp .env.example .env`
+5. Set up a test and development postgres database ( `createdb <database>` )
+6. Update the data in your `.env` file
+7. `npm up:latest`
+8. `npm seed:all`
+9. Enjoy
+
 
