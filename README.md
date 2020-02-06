@@ -182,6 +182,31 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
 ```
 ## Driver CRUD Endpoints
 
+### POST `/api/drivers/upload/:id`
+Note that you must be logged in as a driver to access this endpoint. If not will recieve 401 back from server!
+
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On success returns driver object with the updated changes like below
+
+```js
+"firstName": "Emmanuel",
+"lastName": "Mann",
+"email": "em1@gmail.com",
+"location": "Kira",
+"price": 100,
+"phoneNumber": "978-265-2862",
+"created_at": "2019-02-22T20:43:49.975Z",
+"updated_at": "2020-02-05T15:27:57.875Z",
+"avatar": "https://res.cloudinary.com/kevin632/image/upload/v1581032716/ti7dtkanakxjom48pkhp.jpg" // note that the value for avatar will be updated to a cloudinary database on success
+```
+
 ### GET `/request-driver/:id` 
 Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
 
