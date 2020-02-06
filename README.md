@@ -190,8 +190,6 @@ Note that you must be logged in as a user to access this endpoint. If not will r
 
 Possible Status Codes
 * 200 - Successful 
-* 401 - Unauthorized (invalid token)
-* 400 - Bad Request (not logged in)
 * 500 - Internal server error (You shouldn't be getting these. If you are, let
     me know because something isn't working as expected)
 
