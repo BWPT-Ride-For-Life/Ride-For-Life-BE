@@ -204,7 +204,8 @@ On success returns driver object with the updated changes like below
 "phoneNumber": "978-265-2862",
 "created_at": "2019-02-22T20:43:49.975Z",
 "updated_at": "2020-02-05T15:27:57.875Z",
-"avatar": "https://res.cloudinary.com/kevin632/image/upload/v1581032716/ti7dtkanakxjom48pkhp.jpg" // note that the value for avatar will be updated to a cloudinary database on success
+"avatar": "https://res.cloudinary.com/kevin632/image/upload/v1581032716/ti7dtkanakxjom48pkhp.jpg" 
+// note that the value for avatar will be updated to a cloudinary database on success
 ```
 
 ### GET `/request-driver/:id` 
