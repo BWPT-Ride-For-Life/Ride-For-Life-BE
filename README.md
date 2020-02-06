@@ -6,7 +6,7 @@
 
 The server is deployed to heroku at the url [https:\/\/ride-for-life-bw.herokuapp.com/](https://ride-for-life-bw.herokuapp.com/).
 
-## Driver CRUD Endpoints
+## Auth Endpoints
 
 ### POST `/api/auth/register-driver`
 
@@ -181,6 +181,31 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
   });
 
 ```
+## Driver CRUD Endpoints
+
+### GET `/request-driver/:id` 
+Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
+
+ Here the :id is the drivers id to send a text message to requesting a ride
+
+Possible Status Codes
+* 200 - Successful 
+* 401 - Unauthorized (invalid token)
+* 400 - Bad Request (not logged in)
+* 500 - Internal server error (You shouldn't be getting these. If you are, let
+    me know because something isn't working as expected)
+
+On successful response the server sends back a json object of the following shape
+
+```json
+
+ {
+  "message": "Message was sent sucessfully"
+  }
+
+```
+
+
 ### GET `/api/drivers`
 
 Possible Status Codes
