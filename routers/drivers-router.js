@@ -3,10 +3,22 @@ const driversModel = require("../models/drivers-model")
 const restricted = require("../auth/authenticate-middleware")
 const reviewsRouter = require("./reviews-router")
 const driverCheck = require("../middleware/driverCheck")
+const cloudinary = require("cloudinary").v2
+const fileupload = require("express-fileupload")
+const db = require("../data/dbConfig")
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+})
 
 const router = express.Router()
 
 router.use("/:id/reviews", reviewsRouter)
+router.use(fileupload({
+  useTempFiles: true
+}))
 
 router.get("/", restricted, async (req, res, next) => {
   try {
@@ -36,10 +48,10 @@ router.put("/:id", restricted, driverCheck, async (req, res, next) => {
     if (!email || !location_id || !price || !firstName || !lastName || !phoneNumber) {
       return res.status(400).json({ message: "Missing updated information" })
     }
-    const newInfo = { 
+    const newInfo = {
       ...req.body,
       updated_at: new Date().toLocaleString()
-     }
+    }
     const updatedDriver = await driversModel.update(req.params.id, newInfo)
     if (updatedDriver) {
       res.json(updatedDriver)
@@ -64,5 +76,26 @@ router.delete("/:id", restricted, driverCheck, async (req, res, next) => {
   }
 })
 
+router.post("/upload/:id", async (req, res, next) => {
+  try {
+    const file = req.files.image
+
+    cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+      await driversModel.findDriverById(req.params.id)
+      await driversModel.update(req.params.id, {
+         avatar: result.secure_url
+      })
+        .then(rtn => res.json(rtn))
+        .catch(() => {
+          console.log(err)
+          res.status(500).json({
+            message: "Error uploading image"
+          })
+        })
+    })
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router

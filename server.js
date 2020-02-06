@@ -3,9 +3,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const MessagingResponse = require("twilio").twiml.MessagingResponse
 const restricted = require("./auth/authenticate-middleware")
-const userCheck = require("./middleware/userCheck")
 const driversModel = require("./models/drivers-model")
-
 const authRouter = require("./auth/auth-router")
 const driversRouter = require("./routers/drivers-router")
 
@@ -14,6 +12,7 @@ const server = express()
 server.use(helmet())
 server.use(cors())
 server.use(express.json())
+
 
 server.use("/api/auth", authRouter)
 server.use("/api/drivers", driversRouter)
