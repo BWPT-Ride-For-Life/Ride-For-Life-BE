@@ -430,7 +430,7 @@ On successful response the server sends back a json object of the following shap
   "driver_id": 19
 
 ```
-### DELETE `/api/drivers/:id/reviews/review_id` 
+### DELETE `/api/drivers/:id/reviews/:review_id` 
 Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
  Here the :id is the drivers id and the review_id is the id of the review you want to delete
 
