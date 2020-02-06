@@ -25,6 +25,11 @@ server.use((req, res, next) => {
 
 server.use((err, req, res, next) => {
   console.log(err)
+  if (err.code == 21608) {
+    return res.status(400).json({
+      message: `Drivers Phone number is not verified`,
+    })
+  }
 
   if (err.code == 23505) {
     return res.status(400).json({
@@ -41,6 +46,6 @@ server.use((err, req, res, next) => {
   })
 })
 
-  server.listen(PORT, HOST, () => {
-    console.log(`\n=== Server listening on http://${HOST}:${PORT} ===\n`);
-  });
+server.listen(PORT, HOST, () => {
+  console.log(`\n=== Server listening on http://${HOST}:${PORT} ===\n`);
+});
