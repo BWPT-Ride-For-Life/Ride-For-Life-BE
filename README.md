@@ -254,56 +254,28 @@ Example -
 ```json
 [
   {
-    "name": "Mutumba",
-    "email": "mutumba@email.com",
+    "firstName": "Jimmo",
+    "lastName": "Thomas",
+    "email": "thisemail.com",
     "price": 100,
     "location": "Kampala",
-    "phoneNumber": "713-456-7784",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/spbroma/128.jpg",
-    "created_at": "2019-06-23T09:17:09.028Z",
-    "updated_at": "2020-02-03T07:38:26.328Z"
+    "phoneNumber": "3769208530",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jennyyo/128.jpg",
+    "created_at": "2020-02-07T00:51:30.000Z",
+    "updated_at": "2020-04-13T11:27:16.986Z"
   },
   {
-    "name": "Natukunda",
-    "email": "natu@email.com",
-    "price": 100,
-    "location": "Kampala",
-    "phoneNumber": "070-337-2845",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/spbroma/128.jpg",
-    "created_at": "2019-08-23T10:58:53.749Z",
-    "updated_at": "2020-02-03T05:39:34.811Z"
-  },
-  {
-    "name": "Abbo",
-    "email": "abbo1@email.com",
-    "price": 100,
-    "location": "Kampala",
-    "phoneNumber": "376-920-8530",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/kikillo/128.jpg",
-    "created_at": "2019-06-23T09:17:09.028Z",
-    "updated_at": "2020-02-03T07:38:26.328Z"
-  },
-  {
-    "name": "Mukisa",
-    "email": "Mus@5email.com",
+    "firstName": "May",
+    "lastName": "Carr",
+    "email": "may@timber.com",
     "price": 200,
     "location": "Kampala",
-    "phoneNumber": "259-841-2607",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/francis_vega/128.jpg",
-    "created_at": "2019-09-25T09:41:17.745Z",
-    "updated_at": "2020-02-02T23:52:41.940Z"
+    "phoneNumber": "8309988280",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/benjamin_knight/128.jpg",
+    "created_at": "2020-02-06T02:38:16.000Z",
+    "updated_at": "2020-07-28T12:47:06.694Z"
   },
-  {
-    "name": "Akiki",
-    "email": "akiki@email.com",
-    "price": 200,
-    "location": "Kampala",
-    "phoneNumber": "531-450-6666",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/plbabin/128.jpg",
-    "created_at": "2019-08-13T03:39:08.634Z",
-    "updated_at": "2020-02-02T22:38:31.214Z"
-  },
-  ...
+  // ...
 
 ```
 
