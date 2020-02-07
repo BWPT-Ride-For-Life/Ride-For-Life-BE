@@ -24,26 +24,31 @@ server.get("/", (req, res, next) => {
 });
 
 server.get("/request-driver/:id", async (req, res, next) => {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID
-  const authToken = process.env.TWILIO_AUTH_TOKEN
-  const client = require("twilio")(accountSid, authToken)
-
-  const driver = await driversModel.findDriverById(req.params.id)
-
-  client.messages.create({
-    to: driver.phoneNumber,
-    from: process.env.TWILIO_NUMBER,
-    body: "A user is requesting a ride! Reply with 'yes' to to accept request!",
-  })
-    .then((message) => {
-      console.log(message.sid)
-      res.json({
-        message: "Message successfully sent"
+  try {
+    const accountSid = process.env.TWILIO_ACCOUNT_SID
+    const authToken = process.env.TWILIO_AUTH_TOKEN
+    const client = require("twilio")(accountSid, authToken)
+  
+    const driver = await driversModel.findDriverById(req.params.id)
+  
+    client.messages.create({
+      to: driver.phoneNumber,
+      from: process.env.TWILIO_NUMBER,
+      body: "A user is requesting a ride! Reply with 'yes' to to accept request!",
+    })
+      .then((message) => {
+        console.log(message.sid)
+        res.json({
+          message: "Message successfully sent"
+        })
       })
-    })
-    .catch(err => {
-      next(err)
-    })
+      .catch(err => {
+        next(err)
+      })
+  } catch(err){
+    next(err)
+  }
+  
 })
 
 server.post('/sms', (req, res, next) => {
