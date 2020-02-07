@@ -9,9 +9,8 @@ describe("driversModel", () => {
 
   test("findDriverById", async () => {
     const res = await driversModel.findDriverById(1)
-    expect(res.firstName).toMatch(/florence/i)
+    expect(res.firstName).toMatch(/may/i)
     expect(res.email).toBe("fl@email.com")
-    expect(res.location_id).toBe(undefined)
     expect(res.location).toBe("Nansana")
   })
 

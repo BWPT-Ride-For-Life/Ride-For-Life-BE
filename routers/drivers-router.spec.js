@@ -33,7 +33,7 @@ describe("CRUD driver", () => {
       .set("Authorization", loginResponse.body.token)
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
-    expect(res.body.firstName).toBe("Florence")
+    expect(res.body.firstName).toBe("May")
   })
 
   test("edit driver info", async () => {

@@ -36,6 +36,11 @@ server.use((err, req, res, next) => {
       message: `This email already exists`,
     })
   }
+  if (err.code == 22001) {
+    return res.status(400).json({
+      message: `Please limit character length to 128`,
+    })
+  }
   if (err.code == 42703) {
     return res.status(400).json({
       message: "Please check data format and try again"
