@@ -183,15 +183,25 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
 ## Driver CRUD Endpoints
 
 ### POST `/api/drivers/upload/:id`
+Updates the drivers avatar 
 Note that you must be logged in as a driver to access this endpoint. If not will recieve 401 back from server!
 
+Expects an object with the following keys with the following constraints:
+
+| Field | Type | Other Constraints |
+| ---- | --- | --- |
+| `image` | string | Required |
+
+example:
+```json
+"image": "this is where you add the image file"
+```
 
 Possible Status Codes
 * 200 - Successful 
 * 401 - Unauthorized (invalid token)
 * 400 - Bad Request (not logged in)
-* 500 - Internal server error (You shouldn't be getting these. If you are, let
-    me know because something isn't working as expected)
+* 500 - Internal server error (there should be a message along with this error)
 
 On success returns driver object with the updated changes like below
 
