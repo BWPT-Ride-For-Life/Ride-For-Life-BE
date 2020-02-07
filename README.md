@@ -190,7 +190,7 @@ Expects an object with the following keys with the following constraints:
 
 | Field | Type | Other Constraints |
 | ---- | --- | --- |
-| `image` | string | Required |
+| `image` | file-jpg | Required |
 
 example:
 ```json
