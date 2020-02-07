@@ -86,8 +86,9 @@ router.post("/upload/:id", async (req, res, next) => {
          avatar: result.secure_url
       })
         .then(rtn => res.json(rtn))
-        .catch(() => {
+        .catch((error) => {
           console.log(err)
+          console.log(error)
           res.status(500).json({
             message: "Error uploading image"
           })
