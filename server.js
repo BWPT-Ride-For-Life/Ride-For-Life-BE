@@ -34,7 +34,7 @@ server.get("/request-driver/:id", async (req, res, next) => {
     client.messages.create({
       to: driver.phoneNumber,
       from: process.env.TWILIO_NUMBER,
-      body: "A user is requesting a ride! Reply with 'yes' to to accept request!",
+      body: "A user is requesting a ride! Reply with 'yes' to accept request!",
     })
       .then((message) => {
         console.log(message.sid)
