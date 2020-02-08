@@ -411,7 +411,7 @@ fetch('https://ride-for-life-bw.herokuapp.com/api/auth/login', {
 
 ```
 
-### PUT `/api/drivers/:id/reviews/review_id` 
+### PUT `/api/drivers/:id/reviews/:review_id` 
 Note that you must be logged in as a user to access this endpoint. If not will recieve 401 back from server!
  Here the :id is the drivers id and the review_id is the id of the review you want to update
  
